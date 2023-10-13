@@ -8,13 +8,16 @@ import InputField from "./InputField";
 import toast from "react-hot-toast";
 //AXOIS
 import axios from "axios";
+//REACT DOM
+import { useNavigate } from "react-router-dom";
 function SignIn() {
+  const navigate = useNavigate();
   const inputData = {
-    fname: "",
-    lname: "",
+    firstname: "",
+    lastname: "",
     email: "",
-    contactnumber: "",
     password: "",
+    contactnumber: "",
   };
   const [formData, setFormData] = useState(inputData);
   //HANDLE CHANGE
@@ -32,20 +35,18 @@ function SignIn() {
     try {
       const responseData = await axios.post(
         `${process.env.REACT_APP_API}api/auth/register`,
-        { formData }
+        formData
       );
-      if (responseData && responseData.data.success) {
+      if (responseData.data.success) {
         toast.success(responseData.data.message);
+        setFormData(inputData);
+        navigate("/login");
       } else {
         toast.error(responseData.data.message);
       }
     } catch (err) {
-      if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-      }
-      console.log(err.message);
-      toast.error("Something went wrong");
+      console.log(err);
+      toast.error("Something is wrong");
     }
   };
   return (
@@ -53,22 +54,22 @@ function SignIn() {
       <form onSubmit={handleSubmit}>
         {/* FIRST NAME */}
         <InputField
-          id="fname"
+          id="firstname"
           lable="First Name:"
           type="text"
           placeholder="Enter firstname"
-          name="fname"
-          value={formData.fname}
+          name="firstname"
+          value={formData.firstname}
           onChange={handleChange}
         />
         {/* LAST NAME */}
         <InputField
-          id="lname"
+          id="lastname"
           lable="Last Name:"
           type="text"
           placeholder="Enter lastname"
-          name="lname"
-          value={formData.lname}
+          name="lastname"
+          value={formData.lastname}
           onChange={handleChange}
         />
         {/* EMAIL */}
@@ -81,16 +82,7 @@ function SignIn() {
           value={formData.email}
           onChange={handleChange}
         />
-        {/* CONTACT NUMBER */}
-        <InputField
-          id="contactnumber"
-          lable="Contact Number:"
-          type="number"
-          placeholder=""
-          name="contactnumber"
-          value={formData.contactnumber}
-          onChange={handleChange}
-        />
+
         {/* PASSWORD */}
         <InputField
           id="password"
@@ -99,6 +91,16 @@ function SignIn() {
           placeholder=""
           name="password"
           value={formData.password}
+          onChange={handleChange}
+        />
+        {/* CONTACT NUMBER */}
+        <InputField
+          id="contactnumber"
+          lable="Contact Number:"
+          type="number"
+          placeholder=""
+          name="contactnumber"
+          value={formData.contactnumber}
           onChange={handleChange}
         />
         <div>

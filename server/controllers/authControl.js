@@ -7,7 +7,10 @@ exports.Register=async(req,res)=>{
     const {firstname,lastname,email,contactnumber,password,role}=req.body;
 
     if(!firstname || !lastname || !email || !contactnumber || !password){
-        return res.status(400).send({message:"Require all field"})
+        return res.status(400).send({
+            success:false, 
+            message:"Require all field"
+        })
     }
 
     //HASH PASSWORD
@@ -16,6 +19,7 @@ exports.Register=async(req,res)=>{
         if(err){
             console.error("Eroor:",err);
             res.status(400).send({
+                success:false,
                 message: 'Registration failed'
             })
         }
@@ -62,10 +66,13 @@ exports.login=async(req,res)=>{
     db.query(query,[email],(err,result)=>{
         if(err){
             console.error("Error:",err)
-            res.status(500).send({message:"Login faild"})
+            res.status(500).send({success:false ,message:"Login faild"})
         }
         else if(result.length ==0){
-            res.status(400).send({message:"Invaild Email and Password"})
+            res.status(400).send({
+                success:false,
+                message:"Invaild Email and Password"
+            })
         }
         else{
             const user=result[0];
@@ -73,19 +80,23 @@ exports.login=async(req,res)=>{
             bcrypt.compare(password,user.password,(err,matchPassword)=>{
                 if(err){
                     console.error(err);
-                    res.status(400).send({message:"Login faild"})
+                    res.status(400).send({
+                        success:false, 
+                        message:"Login faild"
+                    })
                 }
                 else if(matchPassword){
                     const token = jwt.sign({userId:user.id,role:user.role},process.env.jwt_key,{expiresIn:"3d"})
                     res.status(201).send(
-                        {message:"Login succssfully",id:user.id,token})
+                        {success:true,message:"Login succssfully",id:user.id,token})
                      
                 }
                 
                 else{
-                    res.status(500).send(
-                        {message:"Invalid email & password"}
-                        )
+                    res.status(500).send({
+                        success:false,
+                        message:"Invalid email & password"
+                    })
                 }
             })
         }
