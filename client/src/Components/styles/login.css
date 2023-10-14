@@ -1,0 +1,27 @@
+.loginContainer{
+    margin: 0 5%;
+    display: grid;
+    grid-template-columns: 1fr .1fr 1fr;
+}
+
+/* LABLE , INPUTFIELD AND BUTTON CLASSNAME FROM `signin.css` */
+
+.forgetPass{
+    color: red;
+    cursor: pointer;
+}
+.forgetPass:hover{
+    text-decoration: underline;
+    color: aqua;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width:715px) {
+    .loginContainer{
+        display: grid;
+        grid-template-columns: auto ;
+    }
+    .midLine{
+        display: none;
+    }
+}

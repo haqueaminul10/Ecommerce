@@ -1,0 +1,45 @@
+.signinContainer{
+margin: 0 5%;
+display: grid;
+grid-template-columns: 1fr .1fr 1fr;
+}
+
+label{
+    display: block;
+    line-height: 2;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.inputField{
+    height: 30px;
+    font-size: 17px;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.submitButton{
+    font-size: 16px;
+    font-weight: 700;
+    background-color: yellow;
+    margin-top: 15px;
+    padding: 15px 25px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.submitButton:hover{
+    background-color: bisque;
+    padding: 17px 37px;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width:715px) {
+    .signinContainer{
+        display: grid;
+        grid-template-columns: auto ;
+    }
+    .midLine{
+        display: none;
+    }
+}
