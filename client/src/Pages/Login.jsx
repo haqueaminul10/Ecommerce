@@ -1,69 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
+
 //IMPORT LAYOUT
 import Layout from "../Components/Layouts/Layout";
-//IMPORT INPUTFIELDS
-import InputField from "./InputField";
+
+//IMPORT CSS
+import "../Components/styles/login.css";
+
+//IMPORT TEXTFIELDS
+import TextField from "./TextField";
+
 //REACT DOM
 import { useNavigate } from "react-router-dom";
-//AXOIS
-import axios from "axios";
-//TOASTFY
-import toast from "react-hot-toast";
-//CSS FILE
-import "../Components/styles/login.css";
+
 function Login() {
   const navigate = useNavigate();
-  const inputValue = { email: "", password: "" };
-  const [logIn, setLogIn] = useState(inputValue);
-  //HANDLE CHANGE
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLogIn({ ...logIn, [name]: value });
-  };
-  //HANDLE SUBMIT
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const responseLogin = await axios.post(
-        `${process.env.REACT_APP_API}api/auth/login`,
-        logIn
-      );
-      if (responseLogin.data.success) {
-        toast.success(responseLogin.data.message);
-        setLogIn(inputValue);
-        navigate("/");
-      } else {
-        toast.error(responseLogin.data.message);
-      }
-    } catch (err) {
-      console.log(err);
-      toast.error("Something going wrong");
-    }
-  };
   return (
     <Layout>
       <div className="loginContainer">
-        <form onSubmit={handleSubmit}>
+        <form>
           <h1>LogIn</h1> <hr />
           <p>Welcome back! Sign in to your account</p>
-          <InputField
+          <TextField
             id="email"
             lable="Email Adress:"
             type="email"
             name="email"
-            value={logIn.email}
+            // value={logIn.email}
             placeholder="example@gmail.com"
-            onChange={handleChange}
+            // onChange={handleChange}
             className="inputField"
           />
-          <InputField
+          <TextField
             id="password"
             lable="Password:"
             type="password"
             name="password"
-            value={logIn.password}
+            // value={logIn.password}
             placeholder=""
-            onChange={handleChange}
+            // onChange={handleChange}
             className="inputField"
           />
           <p className="forgetPass">Forgotten Password?</p>
@@ -83,7 +57,11 @@ function Login() {
           <li>Speed your way through the checkout</li>
           <li>Track your orders easily</li>
           <li>Keep a record of all your purchases</li>
-          <button className="submitButton" type="submit">
+          <button
+            onClick={() => navigate("/register")}
+            className="submitButton"
+            type="submit"
+          >
             REGISTER
           </button>
         </div>

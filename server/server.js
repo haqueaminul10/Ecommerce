@@ -18,9 +18,15 @@ app.use(cors())
 
 //require dotenv
 const dotenv =require('dotenv').config()
+
 //DB CONNECTION
-const db= require("./config/dbConnection.js");
-const register =require("./models/authRegister.js");
+const db= require(`./config/dbConnection.js`);
+
+//userModel
+const userModel =require("./models/userRegister.js");
+//adminModel
+const adminModel =require("./models/adminRegister.js");
+
 
 /////////   REST API ////////
 
@@ -31,12 +37,10 @@ app.get('/',(req,res)=>{
     })
 })
 
-//AUTH ROUTER
-const authRoute= require("./routes/authRouter.js");
-app.use("/api/auth",authRoute)
 
 //PORT
 const PORT= process.env.PORT || 9000;
+
 
 //server listen
 app.listen(PORT,()=>{
