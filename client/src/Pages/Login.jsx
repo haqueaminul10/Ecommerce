@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 //IMPORT LAYOUT
 import Layout from "../Components/Layouts/Layout";
@@ -14,10 +14,25 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
+  const [logIn, setLogIn] = useState({ email: "", password: "" });
+
+  //HANGLE CHANGE FUNCTION
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLogIn({
+      ...logIn,
+      [name]: value,
+    });
+  };
+
+  //HANDLE SUBMIT FUNCTION
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <Layout>
       <div className="loginContainer">
-        <form>
+        <form onSubmit={handleSubmit}>
           <h1>LogIn</h1> <hr />
           <p>Welcome back! Sign in to your account</p>
           <TextField
@@ -25,9 +40,9 @@ function Login() {
             lable="Email Adress:"
             type="email"
             name="email"
-            // value={logIn.email}
+            value={logIn.email}
             placeholder="example@gmail.com"
-            // onChange={handleChange}
+            onChange={handleChange}
             className="inputField"
           />
           <TextField
@@ -35,9 +50,9 @@ function Login() {
             lable="Password:"
             type="password"
             name="password"
-            // value={logIn.password}
+            value={logIn.password}
             placeholder=""
-            // onChange={handleChange}
+            onChange={handleChange}
             className="inputField"
           />
           <p className="forgetPass">Forgotten Password?</p>

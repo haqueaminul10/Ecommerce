@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //IMPORT LAYOUT
 import Layout from "../Components/Layouts/Layout";
 
@@ -13,10 +13,30 @@ import { useNavigate } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
+  const inpuData = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    contactnumber: "",
+  };
+  const [formData, setFormData] = useState(inpuData);
+
+  //HANDLE CHANGE FUNCTION
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  //HANDLE SUBMIT FUNCTION
+  const handleSubmit = () => {};
   return (
     <Layout>
       <div className="signinContainer">
-        <form className="signin-form">
+        <form className="signin-form" onSubmit={handleSubmit}>
           <h1>Create New Account</h1> <hr />
           {/* FIRST NAME */}
           <TextField
@@ -25,8 +45,8 @@ function Register() {
             type="text"
             placeholder="Enter firstname"
             name="firstname"
-            // value={formData.firstname}
-            // onChange={handleChange}
+            value={formData.firstname}
+            onChange={handleChange}
             className="inputField"
           />
           {/* LAST NAME */}
@@ -36,8 +56,8 @@ function Register() {
             type="text"
             placeholder="Enter lastname"
             name="lastname"
-            // value={formData.lastname}
-            // onChange={handleChange}
+            value={formData.lastname}
+            onChange={handleChange}
             className="inputField"
           />
           {/* EMAIL */}
@@ -47,8 +67,8 @@ function Register() {
             type="email"
             placeholder="example @gmail.com"
             name="email"
-            // value={formData.email}
-            // onChange={handleChange}
+            value={formData.email}
+            onChange={handleChange}
             className="inputField"
           />
           {/* PASSWORD */}
@@ -58,8 +78,8 @@ function Register() {
             type="password"
             placeholder=""
             name="password"
-            // value={formData.password}
-            // onChange={handleChange}
+            value={formData.password}
+            onChange={handleChange}
             className="inputField"
           />
           {/* CONTACT NUMBER */}
@@ -69,8 +89,8 @@ function Register() {
             type="number"
             placeholder=""
             name="contactnumber"
-            // value={formData.contactnumber}
-            // onChange={handleChange}
+            value={formData.contactnumber}
+            onChange={handleChange}
             className="inputField"
           />
           <div>

@@ -22,10 +22,8 @@ const dotenv =require('dotenv').config()
 //DB CONNECTION
 const db= require(`./config/dbConnection.js`);
 
-//userModel
-const userModel =require("./models/userRegister.js");
-//adminModel
-const adminModel =require("./models/adminRegister.js");
+//AUTH MODEL
+const authRegister=require("./models/authRegister.js");
 
 
 /////////   REST API ////////
@@ -36,6 +34,10 @@ app.get('/',(req,res)=>{
         message:"home route"
     })
 })
+
+//AUTH ROUTE
+const authRegistation=require("./routes/authRegistation.js")
+app.use("/auth/api",authRegistation)
 
 
 //PORT
