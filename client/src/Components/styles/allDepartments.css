@@ -1,0 +1,37 @@
+.departmentContainer{
+
+}
+.departmentButton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: yellow;
+    gap: 20px;
+    height: 40px;
+    width: 250px;
+    font-size: 20px ;
+    font-weight: 600;
+    border-radius: 10px;
+}
+.departmentUl{
+    list-style-type: none;
+    margin:  0;
+    padding: 0;
+    background-color: gainsboro;
+    width: 250px;
+    position: absolute;
+    z-index: -1;
+    
+}
+.departmentList{
+    
+}
+.nav_link{
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-size: 17px;
+}
+.nav_link:hover{
+    color: green ;
+}
