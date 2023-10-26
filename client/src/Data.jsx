@@ -1,3 +1,4 @@
+import { BsChevronDown } from "react-icons/bs";
 export const deparmentData = [
   {
     id: 1,
@@ -46,30 +47,36 @@ export const navbarData = [
     id: 1,
     name: "Home",
     link: "/",
+    icon: <BsChevronDown />,
   },
   {
     id: 2,
     name: "About",
     link: "/about",
+    icon: <BsChevronDown />,
   },
   {
     id: 3,
     name: "Shop",
     link: "/shop",
+    icon: <BsChevronDown />,
   },
   {
     id: 4,
     name: "Mega Menu",
     link: "/megamunu",
+    icon: <BsChevronDown />,
   },
   {
     id: 5,
     name: "Blog",
     link: "/blog",
+    icon: <BsChevronDown />,
   },
   {
     id: 6,
     name: "Pages",
     link: "/pages",
+    icon: <BsChevronDown />,
   },
 ];

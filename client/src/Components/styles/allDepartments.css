@@ -34,4 +34,5 @@
 }
 .nav_link:hover{
     color: green ;
+    font-weight: 600;
 }

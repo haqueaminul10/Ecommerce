@@ -11,12 +11,13 @@ function NavbarData() {
   return (
     <>
       <ul className="navbarUl">
-        {navbarData.map(({ name, link }, index) => {
+        {navbarData.map(({ name, link, icon }, index) => {
           return (
             <li key={index} className="navbarLi">
               <NavLink to={link} className="navbar_link">
                 {name}
               </NavLink>
+              <span>{icon}</span>
             </li>
           );
         })}
