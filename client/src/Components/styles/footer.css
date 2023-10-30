@@ -1,0 +1,123 @@
+/* FOOTER FIRST PART */
+.footer_one{
+    margin-top: 20px ;
+    padding: 10px;
+    background-color: yellow;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.footer_one_left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer_one_left_icon{
+    font-size: 30px;
+}
+.footer_one_left_text{
+    font-size: 25px;
+}
+.footer_one_right_input{
+    width: 300px;
+    border: none;
+    padding: 7px;
+    font-size: 17px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius:15px ;
+}
+.footer_one_right_submit{
+    color: blanchedalmond;
+    background-color: black;
+    padding: 7px;
+    font-size: 17px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius:15px ;
+}
+
+/* FOOTER LAST PART */
+.footer_two{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: antiquewhite;
+    padding: 10px;
+
+}
+.footer_two_left_call{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer_two_left_logo{
+    font-size: 35px;
+    color: yellow;
+}
+.footer_two_left_number{
+    display: block;
+    font-size: 18px;
+}
+.footer_two_left_info{
+    font-weight: 600;
+}
+.footer_two_left_adress{
+    display: block;
+    font-weight: 400;
+}
+.footer_two_left_icon{
+    font-size: 25px;
+    margin:0 10px;
+    border: 1px solid black;
+    padding: 5px ;
+    border-radius: 20px;
+    background-color: bisque;
+}
+.footer_two_find > li{
+    list-style-type: none;
+    padding: 3px 0;
+}
+.footer_two_find > li:hover{
+    color: red;
+    cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width:1036px){
+    .footer_one_center{
+        display: none;
+    }
+    .footer_two{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        justify-content: space-between;
+        background-color: antiquewhite;
+        padding: 10px;
+    
+    }
+
+}
+
+@media only screen and (max-width:750px){
+    .footer_one{
+        
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .footer_one_right > input{
+        display: block;
+        margin: 7px;
+        width: 95%;
+        border-radius: 15px;
+    }
+
+}

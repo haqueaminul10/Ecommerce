@@ -20,32 +20,7 @@ exports.Register=async(req,res)=>{
             })
         }
         //QUERY
-        const registerData= {
-            firstname,
-            lastname,
-            email,
-            contactnumber,
-            password,
-            role: role || 'user'
-        }
-        const registerQuery=`INSERT INTO Register SET ?`
         const existingQuery=`SELECT * FROM Register WHERE email=? OR contactnumber= ?  `
-        db.query(registerQuery,registerData,(err,result)=>{
-            if(err){
-                console.error("reason:",err)
-                res.status(502).send({
-                    success:false,
-                    message:"database insert error"
-                })
-            }
-            else{
-                console.log("insertId:",result.id);
-                res.status(200).send({
-                    success:true,
-                     message:"registation success"
-                })
-            }
-        })
         db.query(existingQuery,[email,contactnumber],(err,result)=>{
             if(err){
                 console.log(err)
@@ -58,6 +33,33 @@ exports.Register=async(req,res)=>{
                 res.status(401).send({
                     success:false,
                     message:"already registered"
+                })
+            }
+            else{
+                const registerData= {
+                    firstname,
+                    lastname,
+                    email,
+                    contactnumber,
+                    password,
+                    role: role || 'user'
+                }
+                const registerQuery=`INSERT INTO Register SET ?`
+                db.query(registerQuery,registerData,(err,result)=>{
+                    if(err){
+                        console.error("reason:",err)
+                        res.status(502).send({
+                            success:false,
+                            message:"database insert error"
+                        })
+                    }
+                    else{
+                        console.log("insertId:",result.id);
+                        res.status(200).send({
+                            success:true,
+                             message:"registation success"
+                        })
+                    }
                 })
             }
         })
@@ -101,7 +103,7 @@ exports.login =async(req,res)=>{
             else{
                 const user= result[0];
                 if(user.password !== password){
-                    res.status(401).send({
+                    res.status(402).send({
                         success:false,
                         message:"password not found"
                     })

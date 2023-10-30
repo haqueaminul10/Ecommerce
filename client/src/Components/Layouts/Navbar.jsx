@@ -24,6 +24,12 @@ function Navbar() {
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
   const [showInput, setShowInput] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+
+  const toggleCart = () => {
+    setShowCart(!showCart);
+  };
+
   const toggleInput = () => {
     setShowInput(!showInput);
   };
@@ -49,9 +55,24 @@ function Navbar() {
           <AiOutlineSearch className="search_icon" />
         </div>
         <div className="icons">
-          <BiGitCompare className="icon" />
-          <AiOutlineHeart className="icon" />
-          <AiOutlineShoppingCart className="icon" />
+          <div>
+            <BiGitCompare className="icon" />
+          </div>
+          <div>
+            <AiOutlineHeart className="icon" />
+          </div>
+          <div>
+            <div>
+              <AiOutlineShoppingCart className="icon" onClick={toggleCart} />
+            </div>
+            {showCart && (
+              <div className="cartSidebar">
+                <div className="cartClose">
+                  <AiOutlineClose onClick={toggleCart} />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
         <div>
           <AllDepartments />
@@ -80,6 +101,7 @@ function Navbar() {
                 />
                 <BiGitCompare className="side_icon1" />
                 <AiOutlineHeart className="side_icon2" />
+
                 <div>
                   <ul className="res_navbarUl">
                     {navbarData.map(({ name, link, icon }, index) => {

@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import axios from "axios";
 //IMPORT LAYOUT
 import Layout from "../Components/Layouts/Layout";
 
 //IMPORT CSS
 import "../Components/styles/register.css";
+
+//IMPORT REACT TOASTIFY
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //IMPORT TEXTFIELDS
 import TextField from "./TextField";
@@ -32,7 +37,29 @@ function Register() {
   };
 
   //HANDLE SUBMIT FUNCTION
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(formData);
+      const response = await axios.post(
+        `http://localhost:7000/auth/api/register`,
+        formData
+      );
+      if (response.status === 200) {
+        toast.success(response.data.message);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        navigate(`/login`);
+      } else if (response.status === 401) {
+        toast.error(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (err) {
+      console.log("Error:", err);
+      toast.error("Registation Failed");
+    }
+    console.log(process.env.REACT_APP_API);
+  };
   return (
     <Layout>
       <div className="signinContainer">
@@ -48,6 +75,7 @@ function Register() {
             value={formData.firstname}
             onChange={handleChange}
             className="inputField"
+            required
           />
           {/* LAST NAME */}
           <TextField
@@ -59,6 +87,7 @@ function Register() {
             value={formData.lastname}
             onChange={handleChange}
             className="inputField"
+            required
           />
           {/* EMAIL */}
           <TextField
@@ -70,6 +99,7 @@ function Register() {
             value={formData.email}
             onChange={handleChange}
             className="inputField"
+            required
           />
           {/* PASSWORD */}
           <TextField
@@ -81,6 +111,7 @@ function Register() {
             value={formData.password}
             onChange={handleChange}
             className="inputField"
+            required
           />
           {/* CONTACT NUMBER */}
           <TextField
@@ -92,6 +123,7 @@ function Register() {
             value={formData.contactnumber}
             onChange={handleChange}
             className="inputField"
+            required
           />
           <div>
             <button type="submit" className="submitButton">

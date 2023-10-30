@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 //IMPORT LAYOUT
 import Layout from "../Components/Layouts/Layout";
 
@@ -8,6 +8,10 @@ import "../Components/styles/login.css";
 
 //IMPORT TEXTFIELDS
 import TextField from "./TextField";
+
+//IMPORT REACT TOASTIFY
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //REACT DOM
 import { useNavigate } from "react-router-dom";
@@ -26,8 +30,28 @@ function Login() {
   };
 
   //HANDLE SUBMIT FUNCTION
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://localhost:7000/auth/api/login`,
+        logIn
+      );
+      if (response.status === 200) {
+        toast.success(response.data.message);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        navigate("/");
+      } else if (response.status === 401) {
+        toast.success(response.data.message);
+      } else if (response.status === 402) {
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Login Faild");
+    }
   };
   return (
     <Layout>

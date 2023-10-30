@@ -10,6 +10,7 @@
 /* LOGO DIV */
 .logo{
     /* border: 1px solid black; */
+    cursor: pointer;
 }
 
 .logo_name{
@@ -57,6 +58,26 @@
     border-radius: 10px;
 }
 
+/* CART SECTION */
+.cartSidebar{
+    position: fixed;
+        top: 30px;
+        right: 0;
+        width: 30%;
+        height: 100%;
+        background-color: whitesmoke;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        /* align-items: center;
+        justify-content: center; */
+}
+
+.cartClose{
+    background-color: yellow;
+    width: 100%;
+}
+
 /* ICON DIV */
 .icons{
     display: flex;
@@ -77,9 +98,11 @@
 @media only screen and (max-width:1080px){
     .navbar{
         display: none;
+        
     }
     .responsive_navbar{
         display: block;
+        margin-bottom: 10px;
     }
     .nav_container{
         background-color: whitesmoke;
@@ -109,6 +132,7 @@
         justify-content: center; */
         
     }
+    
     .icon-close{
         font-size: 37px;
         font-weight: 600;
@@ -116,6 +140,8 @@
         position: absolute;
         top: 10px;
         left: 10px;
+        color: yellowgreen;
+        
     }
     .side_icon1{
         font-size: 30px;

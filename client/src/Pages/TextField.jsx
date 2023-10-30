@@ -9,6 +9,7 @@ function TextField({
   placeholder,
   onChange,
   className,
+  required,
 }) {
   return (
     <div>
@@ -21,6 +22,7 @@ function TextField({
         placeholder={placeholder}
         onChange={onChange}
         className={className}
+        required={required}
       />
     </div>
   );
