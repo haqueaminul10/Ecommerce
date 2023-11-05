@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 //IMPORT LAYOUT
 import Layout from "../Components/Layouts/Layout";
@@ -15,10 +15,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 //REACT DOM
 import { useNavigate } from "react-router-dom";
+//IMPORT CONTEXT
+import { AuthContext } from "../Components/Context/Auth";
 
 function Login() {
   const navigate = useNavigate();
   const [logIn, setLogIn] = useState({ email: "", password: "" });
+  const { auth, setAuth } = useContext(AuthContext);
 
   //HANGLE CHANGE FUNCTION
   const handleChange = (e) => {
@@ -40,11 +43,17 @@ function Login() {
       if (response.status === 200) {
         toast.success(response.data.message);
         await new Promise((resolve) => setTimeout(resolve, 1000));
+        setAuth({
+          ...auth,
+          user: response.data.user,
+          token: response.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(response.data));
         navigate("/");
       } else if (response.status === 401) {
-        toast.success(response.data.message);
+        toast.error(response.data.message);
       } else if (response.status === 402) {
-        toast.success(response.data.message);
+        toast.error(response.data.message);
       } else {
         toast.error(response.data.message);
       }
