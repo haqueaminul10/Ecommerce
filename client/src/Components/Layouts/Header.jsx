@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 //IMPORT ICON
 import { BsTelephone, BsGlobe } from "react-icons/bs";
@@ -7,7 +7,7 @@ import { IoLocationOutline } from "react-icons/io5";
 
 //IMPORT CSS
 import "../styles/header.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 //IMPORT CONTEXT
 import { AuthContext } from "../Context/Auth";
@@ -19,6 +19,12 @@ import "react-toastify/dist/ReactToastify.css";
 function Header() {
   const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   //HANDLE LOGOUT
   const handleLogout = async () => {
@@ -50,6 +56,9 @@ function Header() {
             <IoLocationOutline className="headerIcon" />
             Store Location
           </div>
+
+          {/* REGISTER USER */}
+
           {!auth.user ? (
             <div className="subContainer">
               <AiOutlineUser className="headerIcon" />
@@ -59,7 +68,29 @@ function Header() {
           ) : (
             <div className="subContainer">
               <AiOutlineUser className="headerIcon" />
-              <span onClick={handleLogout}>Logout</span>
+
+              <div className="dropdown">
+                <div onClick={toggleMenu} className="user-name">
+                  {auth?.user?.firstname}
+                </div>
+                {isOpen && (
+                  <ul className="dropdown-content">
+                    <NavLink
+                      className="navlink"
+                      to={`/dashboard/${
+                        auth?.user?.role === "admin" ? "admin" : "user"
+                      }`}
+                    >
+                      Dashboard
+                    </NavLink>
+                    <NavLink className="navlink" onClick={handleLogout}>
+                      Logout
+                    </NavLink>
+                  </ul>
+                )}
+              </div>
+
+              {/* <div onClick={handleLogout}>Logout</div> */}
             </div>
           )}
           <div className="subContainer">

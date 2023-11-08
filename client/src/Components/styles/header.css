@@ -28,6 +28,51 @@
     font-size: 20px;
 }
 
+/* USER NAME DROPDOWN */
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .user-name {
+    cursor: pointer; 
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .dropdown-content {
+    /* display: none; */
+    
+    height: 80px;
+    width: 160px;
+    left: -100px;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+  }
+  
+  .dropdown-content .navlink {
+    padding: 10px;
+    cursor: pointer;
+    display: block;
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+  }
+
+  .dropdown-content .navlink:hover{
+    background-color: aqua;
+  }
+  
+  .dropdown.open .dropdown-content {
+    display: block;
+  }
+
 /* RESPONSIVE */
 
 @media only screen and (max-width:1080px) {

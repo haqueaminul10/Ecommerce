@@ -14,12 +14,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //REACT DOM
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 //IMPORT CONTEXT
 import { AuthContext } from "../Components/Context/Auth";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [logIn, setLogIn] = useState({ email: "", password: "" });
   const { auth, setAuth } = useContext(AuthContext);
 
@@ -49,7 +50,7 @@ function Login() {
           token: response.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(response.data));
-        navigate("/");
+        navigate(location.state || "/");
       } else if (response.status === 401) {
         toast.error(response.data.message);
       } else if (response.status === 402) {

@@ -17,6 +17,16 @@ authMiddleware.requireSignin,authMiddleware.isAdmin('admin'),
 authController.testController
 )
 
+//PROTECTED USER ROUTE
+router.get("/user-auth",authMiddleware.requireSignin,(req,res)=>{
+    res.status(200).send({ ok:true})
+})
+
+//PROTECTED ADMIN ROUTE
+router.get("/admin-auth",authMiddleware.requireSignin, authMiddleware.isAdmin,(req,res)=>{
+    res.status(200).send({ ok:true})
+})
+
 module.exports =router;
 
 

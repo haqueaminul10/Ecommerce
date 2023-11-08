@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 //REACT ROUTER DOM
 
 import { NavLink, useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import {
 } from "react-icons/ai";
 import { BiGitCompare } from "react-icons/bi";
 import { BsPerson, BsTelephone } from "react-icons/bs";
+import { FiLogOut } from "react-icons/fi";
 
 //IMPORT COMPONENTS
 import AllDepartments from "../../Pages/AllDepartments";
@@ -20,11 +21,32 @@ import NavbarData from "../../Pages/NavbarData";
 import { navbarData } from "../../Data";
 import "../styles/navbar.css";
 
+//IMPORT CONTEXT
+import { AuthContext } from "../Context/Auth";
+
+//IMPORT REACT TOASTIFY
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Navbar() {
+  const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [showCart, setShowCart] = useState(false);
+
+  //HANDLE LOGOUT
+  const handleLogout = async () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    toast.success("Logout Successfully");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    navigate("/login");
+  };
 
   const toggleCart = () => {
     setShowCart(!showCart);
@@ -150,9 +172,15 @@ function Navbar() {
                 />
               )}
             </div>
-            <div className="icons">
-              <BsPerson className="icon" onClick={() => navigate(`/login`)} />
-            </div>
+            {!auth.user ? (
+              <div className="icons">
+                <BsPerson className="icon" onClick={() => navigate(`/login`)} />
+              </div>
+            ) : (
+              <div className="icons">
+                <FiLogOut className="icon" onClick={handleLogout} />
+              </div>
+            )}
             <div className="icons">
               <AiOutlineShoppingCart
                 className="icon"
