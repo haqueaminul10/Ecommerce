@@ -23,7 +23,7 @@ router.get("/user-auth",authMiddleware.requireSignin,(req,res)=>{
 })
 
 //PROTECTED ADMIN ROUTE
-router.get("/admin-auth",authMiddleware.requireSignin, authMiddleware.isAdmin,(req,res)=>{
+router.get("/admin-auth",authMiddleware.requireSignin, authMiddleware.isAdmin('admin'),(req,res)=>{
     res.status(200).send({ ok:true})
 })
 

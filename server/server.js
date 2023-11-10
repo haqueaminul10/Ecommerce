@@ -24,6 +24,8 @@ const db= require(`./config/dbConnection.js`);
 
 //AUTH MODEL
 const authRegister=require("./models/authRegister.js");
+//CATEGORY MODEL (ADMIN)
+const categoryModel =require("./models/CategoryModel.js");
 
 
 /////////   REST API ////////
@@ -38,6 +40,10 @@ app.get('/',(req,res)=>{
 //AUTH ROUTE
 const authRegistation=require("./routes/authRegistation.js")
 app.use("/auth/api",authRegistation)
+
+//CATEGORY ROUTE FOR (ADMIN)
+const categoryRoute =require("./routes/categoryRoute.js")
+app.use("/api/category",categoryRoute)
 
 
 //PORT

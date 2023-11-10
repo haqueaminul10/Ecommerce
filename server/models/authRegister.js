@@ -13,7 +13,7 @@ const createTableQuery = `
   )
 `;
 
-// Execute the query to create the table
+// EXECUTE THE QUERY TO CREATE TABLE
 db.query(createTableQuery, (err, results) => {
     if (err) {
       console.error('Error creating the table:', err.message);
