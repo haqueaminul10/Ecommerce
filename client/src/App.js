@@ -7,8 +7,13 @@ import DashBoard from "./Pages/user/DashBoard";
 import PrivateRoute from "./Components/Routes/PrivateRoute";
 import AdminRoute from "./Components/Routes/AdminRoute";
 import AdminDashborad from "./Pages/Admin/AdminDashborad";
+import ProductDetails from "./Pages/ProductDetails"
 //ROUTING
 import { Routes,Route } from "react-router-dom";
+
+
+
+
 
 
 
@@ -18,6 +23,7 @@ function App() {
     <>
     <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="/product/:id" element={<ProductDetails/>}/>
       <Route path="/dashboard" element={<PrivateRoute/>}>
           <Route path="user" element={<DashBoard/>}/>
       </Route>
@@ -26,7 +32,12 @@ function App() {
       </Route>
       <Route path="/register" element={<Register/>}/>
       <Route path="/login" element={<Login/>}/>
-      <Route path="/cart" element={<Cart/>}/>
+      {/* <Route path="/cart" element={<Cart/>}/> */}
+      
+
+
+    
+
         
     </Routes>
     </>

@@ -19,16 +19,20 @@ import { FiLogOut } from "react-icons/fi";
 import AllDepartments from "../../Pages/AllDepartments";
 import NavbarData from "../../Pages/NavbarData";
 import { navbarData } from "../../Data";
+import Cart from "../../Pages/Cart";
 import "../styles/navbar.css";
 
 //IMPORT CONTEXT
 import { AuthContext } from "../Context/Auth";
+import { CartContext } from "../Context/CartContex";
 
 //IMPORT REACT TOASTIFY
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
+  console.log(useContext(CartContext));
+  const { cart } = useContext(CartContext);
   const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -83,6 +87,9 @@ function Navbar() {
           <div>
             <AiOutlineHeart className="icon" />
           </div>
+
+          {/* CART SECTION */}
+
           <div>
             <div>
               <AiOutlineShoppingCart className="icon" onClick={toggleCart} />
@@ -91,6 +98,17 @@ function Navbar() {
               <div className="cartSidebar">
                 <div className="cartClose">
                   <AiOutlineClose onClick={toggleCart} />
+                </div>
+                <div>
+                  {cart.length == 0 ? (
+                    <p style={{ textAlign: `center` }}>No Item in here</p>
+                  ) : (
+                    <div>
+                      {cart.map((item) => {
+                        return <Cart item={item} key={item.id} />;
+                      })}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
