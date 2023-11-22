@@ -31,8 +31,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
-  console.log(useContext(CartContext));
+  //console.log(useContext(CartContext));
   const { cart } = useContext(CartContext);
+  const { cartAmount, total } = useContext(CartContext);
   const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -93,6 +94,7 @@ function Navbar() {
           <div>
             <div>
               <AiOutlineShoppingCart className="icon" onClick={toggleCart} />
+              <div className="iconNumber">{cartAmount}</div>
             </div>
             {showCart && (
               <div className="cartSidebar">
@@ -101,12 +103,21 @@ function Navbar() {
                 </div>
                 <div>
                   {cart.length == 0 ? (
-                    <p style={{ textAlign: `center` }}>No Item in here</p>
+                    <div>
+                      <p style={{ textAlign: `center` }}>No Item in here</p>
+                    </div>
                   ) : (
                     <div>
                       {cart.map((item) => {
-                        return <Cart item={item} key={item.id} />;
+                        return (
+                          <div>
+                            <Cart item={item} key={item.id} />
+                          </div>
+                        );
                       })}
+                      <h4 style={{ marginTop: `32rem`, background: `green` }}>
+                        Total: ${total}
+                      </h4>
                     </div>
                   )}
                 </div>

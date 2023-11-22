@@ -44,11 +44,13 @@ function Cart({ item }) {
             </div>
             <div>
               <p className="cartQuantityTitle">Net Price:</p>
-              <span className="cartPrice">{price}$</span>
+              <span className="cartPrice">${price}</span>
             </div>
             <div>
               <p className="cartQuantityTitle">Total Price:</p>
-              <span className="cartPrice">{amount * price}$</span>
+              <span className="cartPrice">
+                ${parseFloat(amount * price).toFixed(2)}
+              </span>
             </div>
           </div>
         </div>

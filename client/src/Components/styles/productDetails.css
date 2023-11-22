@@ -1,0 +1,21 @@
+.proContainer{
+    border: 3px solid green;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 0.6fr;
+}
+.proSec1{
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.proImage{
+    height: 600px;
+    width: 400px;
+}
+.proSec2{
+    
+}
+.title{
+    color: red;
+}

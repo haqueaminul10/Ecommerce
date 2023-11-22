@@ -72,6 +72,17 @@
         /* align-items: center;
         justify-content: center; */
 }
+.iconNumber{
+    top: 50px;
+    position: absolute;
+    right: 120px;
+    color: yellow;
+    font-size: 16px;
+    background-color: red;
+    /* border-radius: 20%; */
+    font-weight: 500;
+    padding:0 3px;
+}
 
 .cartClose{
     background-color: yellow;
