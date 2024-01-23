@@ -1,0 +1,98 @@
+.card{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 40px;
+    margin: 20px 30px;
+    
+}
+.card_container{
+    /* border: 2px solid black; */
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 20px 10px 10px 5px gainsboro;
+}
+.card_img{
+    height: 220px;
+    width: 280px;
+    margin: 5px auto;
+}
+.card_img > img{
+    height: 220px;
+    width:280px;
+    object-fit: contain;
+}
+.card_title{
+   
+    height: 25px;
+}
+.card_title >span{
+    font-weight: 600;
+    
+}
+.card_des{
+    
+    height: 85px;
+}
+.card_rp{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 5px;
+    
+}
+.card_price{
+    font-weight: 700;
+}
+
+.card_details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:  5px;
+}
+.card_button{
+    display: flex;
+    align-items: center;
+    background-color: aquamarine;
+    color: black;
+    gap: 5px;
+    border-radius: 10px;
+    padding: 3px;
+}
+.card_icon{
+    font-size: 16px;
+    
+}
+.button_text{
+    font-size: 16px;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width:1320px){
+    .card{
+        display: grid;
+        grid-template-columns: auto auto auto ;
+        gap: 40px;
+        margin: 20px 30px;
+        
+    }
+}
+
+@media only screen and (max-width:980px){
+    .card{
+        display: grid;
+        grid-template-columns: auto auto  ;
+        gap: 40px;
+        margin: 20px 30px;
+        
+    }
+}
+@media only screen and (max-width:645px){
+    .card{
+        display: grid;
+        grid-template-columns: auto;
+        gap: 40px;
+        margin: 20px 30px;
+        
+    }
+}

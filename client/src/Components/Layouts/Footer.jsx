@@ -1,8 +1,5 @@
 import React from "react";
-
-//IMPORT CSS
-import "../styles/footer.css";
-
+import "../Style/footer.css";
 // IMPORT ICON
 import { FaRegPaperPlane } from "react-icons/fa";
 import { SlCallOut } from "react-icons/sl";

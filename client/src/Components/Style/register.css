@@ -17,6 +17,12 @@
         width: 100%;
         border-radius: 15px;
     }
+    .selectField{
+        height: 40px;
+        font-size: 17px;
+        width: 100%;
+        border-radius: 15px;
+    }
     
     .submitButton{
         font-size: 16px;
@@ -30,7 +36,7 @@
     
     .submitButton:hover{
         background-color: bisque;
-        padding: 17px 37px;
+        
     }
     
     /* RESPONSIVE */

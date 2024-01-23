@@ -1,33 +1,19 @@
 import React, { useState } from "react";
-import axios from "axios";
-//IMPORT LAYOUT
-import Layout from "../Components/Layouts/Layout";
-
-//IMPORT CSS
-import "../Components/styles/register.css";
-
-//IMPORT REACT TOASTIFY
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-//IMPORT TEXTFIELDS
-import TextField from "./TextField";
-
-//REACT DOM
+import Layout from "../Layouts/Layout";
 import { useNavigate } from "react-router-dom";
+import TextField from "../Layouts/TextField";
 
 function Register() {
   const navigate = useNavigate();
-  const inpuData = {
+  const inputData = {
     firstname: "",
     lastname: "",
     email: "",
-    password: "",
+    gender: "",
     contactnumber: "",
+    password: "",
   };
-  const [formData, setFormData] = useState(inpuData);
-
-  //HANDLE CHANGE FUNCTION
+  const [formData, setFormData] = useState(inputData);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -35,33 +21,14 @@ function Register() {
       [name]: value,
     });
   };
-
-  //HANDLE SUBMIT FUNCTION
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log(formData);
-      const response = await axios.post(
-        `http://localhost:7000/auth/api/register`,
-        formData
-      );
-      if (response.status === 200) {
-        toast.success(response.data.message);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        navigate(`/login`);
-      } else if (response.status === 401) {
-        toast.error(response.data.message);
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (err) {
-      console.log("Error:", err);
-      toast.error("Registation Failed");
-    }
-    console.log(process.env.REACT_APP_API);
+    console.log(formData);
+    alert(`Register successfully`);
   };
+
   return (
-    <Layout>
+    <>
       <div className="signinContainer">
         <form className="signin-form" onSubmit={handleSubmit}>
           <h1>Create New Account</h1> <hr />
@@ -101,18 +68,20 @@ function Register() {
             className="inputField"
             required
           />
-          {/* PASSWORD */}
-          <TextField
-            id="password"
-            lable="Password:"
-            type="password"
-            placeholder=""
-            name="password"
-            value={formData.password}
+          {/* GENDER SELECTION */}
+          <label htmlFor="gender">Choose Gender:</label>
+          <select
+            id="gender"
+            name="gender"
+            className="selectField"
+            value={formData.gender}
             onChange={handleChange}
-            className="inputField"
-            required
-          />
+          >
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+          </select>
           {/* CONTACT NUMBER */}
           <TextField
             id="contactnumber"
@@ -121,6 +90,18 @@ function Register() {
             placeholder=""
             name="contactnumber"
             value={formData.contactnumber}
+            onChange={handleChange}
+            className="inputField"
+            required
+          />
+          {/* PASSWORD */}
+          <TextField
+            id="password"
+            lable="Password:"
+            type="password"
+            placeholder=""
+            name="password"
+            value={formData.password}
             onChange={handleChange}
             className="inputField"
             required
@@ -151,7 +132,7 @@ function Register() {
           </button>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
 

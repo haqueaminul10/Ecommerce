@@ -1,45 +1,32 @@
-//IMPORT COMPONENTS
-import Home from "./Pages/Home";
-import Register from "./Pages/Register";
-import Login from "./Pages/Login";
-import Cart from './Pages/Cart'
-import DashBoard from "./Pages/user/DashBoard";
-import PrivateRoute from "./Components/Routes/PrivateRoute";
-import AdminRoute from "./Components/Routes/AdminRoute";
-import AdminDashborad from "./Pages/Admin/AdminDashborad";
-import ProductDetails from "./Pages/ProductDetails"
-//ROUTING
-import { Routes,Route } from "react-router-dom";
-
-
-
-
-
-
-
+import "./App.css";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+// IMPORT COMPONENTS
+import Home from "./Components/Pages/Home";
+import Register from "./Components/Pages/Register";
+import LogIn from "./Components/Pages/LogIn";
+import About from "./Components/Pages/About";
+import Cart from "./Components/Pages/Cart";
+import Header from "./Components/Layouts/Header";
+import Footer from "./Components/Layouts/Footer";
+import Navbar from "./Components/Layouts/Navbar";
+import ProductDetails from "./Components/Pages/ProductDetails";
 
 function App() {
   return (
     <>
-    <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/product/:id" element={<ProductDetails/>}/>
-      <Route path="/dashboard" element={<PrivateRoute/>}>
-          <Route path="user" element={<DashBoard/>}/>
-      </Route>
-      <Route path="/dashboard" element={<AdminRoute/>}>
-          <Route path="admin" element={<AdminDashborad/>}/>
-      </Route>
-      <Route path="/register" element={<Register/>}/>
-      <Route path="/login" element={<Login/>}/>
-      {/* <Route path="/cart" element={<Cart/>}/> */}
-      
-
-
-    
-
-        
-    </Routes>
+      <BrowserRouter>
+        <Header />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/product_details/:id" element={<ProductDetails />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }
