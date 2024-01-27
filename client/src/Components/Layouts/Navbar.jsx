@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Style/navbar.css";
 import NavData from "../Pages/NavData";
@@ -23,10 +23,12 @@ import { AiOutlineMail } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
 import Search from "../Pages/Search";
 import CartAsidebar from "../Pages/CartAsidebar";
+import { CartContext } from "../Context/Cart";
 
 function Navbar() {
   const navigate = useNavigate();
   const [sideBar, setSideBar] = useState(false);
+  const { cart } = useContext(CartContext);
   const toggleSideBar = () => {
     setSideBar(!sideBar);
   };
@@ -81,10 +83,14 @@ function Navbar() {
             </span>
           </div>
           <div className="icons">
-            <AiOutlineShoppingCart
-              className="icon"
-              onClick={() => navigate(`/cart`)}
-            />
+            <div className="cart_container">
+              <span className="cart_length">{cart.length}</span>
+              <AiOutlineShoppingCart
+                className="icon"
+                onClick={() => navigate(`/cart`)}
+              />
+            </div>
+
             <IoIosPerson className="icon" onClick={() => navigate(`/login`)} />
           </div>
           {sideBar && (
@@ -106,12 +112,7 @@ function Navbar() {
                 </div>
                 <hr style={{ color: `red` }} />
                 <div className="search fixed-items">
-                  <input
-                    type="text"
-                    placeholder="Search here ..."
-                    className="search_input"
-                  />
-                  <AiOutlineSearch className="search_icon" />
+                  <Search />
                 </div>
                 <div>
                   <NavData />

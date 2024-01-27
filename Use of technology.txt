@@ -1,2 +1,11 @@
 //Front-End => ReactJs
 // icon    => React icon
+//Carousel => React Slick
+
+
+
+
+
+
+//Back-End=> NodeJs(ExpressJs)
+//Database=> MySQL

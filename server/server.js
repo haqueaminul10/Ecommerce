@@ -1,56 +1,40 @@
 //require express
-const express =require(`express`);
-const app =express();
+const express = require(`express`);
+const app = express();
 app.use(express.json());
 
 //body-parser
-const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-//require morgan
-const morgan = require('morgan');
-app.use(morgan('dev'));
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //require cors
-const cors = require('cors')
-app.use(cors())
+const cors = require("cors");
+app.use(cors());
 
 //require dotenv
-const dotenv =require('dotenv').config()
+const dotenv = require("dotenv").config();
 
 //DB CONNECTION
-const db= require(`./config/dbConnection.js`);
-
+const db = require("./config/dbConnection.js");
 //AUTH MODEL
-const authRegister=require("./models/authRegister.js");
-//CATEGORY MODEL (ADMIN)
-const categoryModel =require("./models/CategoryModel.js");
-
-
+const authModel = require("./models/authModel.js");
 /////////   REST API ////////
 
 //HOME ROUTE
-app.get('/',(req,res)=>{
-    res.status(200).send({
-        message:"home route"
-    })
-})
-
+app.get("/", (req, res) => {
+  res.status(200).send({
+    message: "home route",
+  });
+});
 //AUTH ROUTE
-const authRegistation=require("./routes/authRegistation.js")
-app.use("/auth/api",authRegistation)
-
-//CATEGORY ROUTE FOR (ADMIN)
-const categoryRoute =require("./routes/categoryRoute.js")
-app.use("/api/category",categoryRoute)
-
+const authRoute = require("./routes/authRoute.js");
+app.use("/api/auth", authRoute);
 
 //PORT
-const PORT= process.env.PORT || 9000;
+const PORT = process.env.PORT || 9000;
 
-
-//server listen
-app.listen(PORT,()=>{
-    console.log(`server is running ${PORT}`)
+//SERVER LISTEN
+app.listen(PORT, () => {
+  console.log(`server is running ${PORT}`);
 });

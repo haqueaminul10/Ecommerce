@@ -1,8 +1,7 @@
 import React from "react";
-import Layout from "../Layouts/Layout";
 
 function About() {
-  return About;
+  return <></>;
 }
 
 export default About;

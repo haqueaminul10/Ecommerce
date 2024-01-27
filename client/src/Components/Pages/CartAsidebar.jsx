@@ -15,6 +15,7 @@ function CartAsidebar() {
     <>
       <div>
         <div className="cart_container">
+          <span className="cart_length">{cart.length}</span>
           <AiOutlineShoppingCart className="icon" onClick={toggleCart} />
         </div>
         {showCart && (

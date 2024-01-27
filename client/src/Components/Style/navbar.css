@@ -56,6 +56,7 @@
     font-size: 37px;
     font-weight: 600;
     cursor: pointer;
+   
 }
 .search_icon:hover{
     color: yellow;
@@ -95,7 +96,19 @@
     background-color: yellow;
     width: 100%;
 }
-
+.cart_container {
+    position: relative;
+  }
+  .cart_length {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red; 
+    color: white; 
+    font-size: 12px; 
+    padding: 2px 4px;
+    border-radius: 50%; 
+  }
 /* ICON DIV */
 .icons{
     display: flex;
@@ -275,9 +288,7 @@
         gap: 30px;
         margin: 30px 10%;
     }
-    .cart_container{
-        display: none;
-    }
+    
 
 }
 

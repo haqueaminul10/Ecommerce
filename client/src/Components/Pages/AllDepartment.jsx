@@ -33,5 +33,4 @@ function AllDepartment() {
     </>
   );
 }
-
 export default AllDepartment;

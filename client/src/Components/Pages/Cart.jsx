@@ -4,7 +4,7 @@ import { CartContext } from "../Context/Cart";
 import "../Style/cart.css";
 
 function Cart() {
-  const { cart, removeFromCart, decreaseProduct, increaseProduct } =
+  const { cart, removeFromCart, decreaseProduct, increaseProduct, totalPrice } =
     useContext(CartContext);
 
   return (
@@ -59,9 +59,15 @@ function Cart() {
         </>
       ) : (
         <div>
-          <p style={{ textAlign: `center` }}>No Items in here</p>
+          <p style={{ textAlign: `center`, fontSize: `20px` }}>
+            No Items in here
+          </p>
         </div>
       )}
+      <p style={{ textAlign: `center`, fontSize: `20px` }}>
+        Total:{" "}
+        <span style={{ color: `green`, fontWeight: `700` }}>${totalPrice}</span>
+      </p>
     </>
   );
 }
